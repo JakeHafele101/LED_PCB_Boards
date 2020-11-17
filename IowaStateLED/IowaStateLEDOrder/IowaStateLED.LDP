@@ -1,0 +1,3 @@
+Layer Pairs Export File for PCB: U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc
+LayersSetName=Top_Bot_Thru_Holes|DrillFile=iowastateled-roundholes.txt|DrillLayers=gtl,gbl
+LayersSetName=Top_Bot_Slot_Holes|DrillFile=iowastateled-slotholes.txt|DrillLayers=gtl,gbl

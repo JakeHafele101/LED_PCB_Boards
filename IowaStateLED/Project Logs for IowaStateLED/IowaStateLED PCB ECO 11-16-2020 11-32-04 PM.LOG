@@ -1,0 +1,6 @@
+Added Pin To Net: NetName=C1 Pin=C1-1
+Added Pin To Net: NetName=C2 Pin=C2-1
+Added Member To Class: ClassName=IowaStateLEDSch Member=Component C1 0.01 uf
+Added Member To Class: ClassName=IowaStateLEDSch Member=Component C2 10 uf
+Added Room: Name=ConstantLED
+Added Room: Name=IowaStateLEDSch

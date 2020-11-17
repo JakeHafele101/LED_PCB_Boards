@@ -1,0 +1,23 @@
+Removed Pin From Net: NetName=C2 Pin=R55-1
+Removed Pin From Net: NetName=C3 Pin=R56-1
+Removed Pin From Net: NetName=C4 Pin=R57-1
+Removed Pin From Net: NetName=C5 Pin=R78-1
+Removed Pin From Net: NetName=C6 Pin=R79-1
+Removed Pin From Net: NetName=C7 Pin=R80-1
+Removed Pin From Net: NetName=C8 Pin=R81-1
+Removed Pin From Net: NetName=C9 Pin=R82-1
+Added Pin To Net: NetName=C3 Pin=R55-1
+Added Pin To Net: NetName=C4 Pin=R56-1
+Added Pin To Net: NetName=C5 Pin=R57-1
+Added Pin To Net: NetName=C6 Pin=R78-1
+Added Pin To Net: NetName=C8 Pin=R79-1
+Added Pin To Net: NetName=C9 Pin=R80-1
+Added Pin To Net: NetName=C7 Pin=R81-1
+Added Pin To Net: NetName=C2 Pin=R82-1
+Added Member To Class: ClassName=IowaStateLEDSch Member=Component DS32 Y LED
+Added Member To Class: ClassName=IowaStateLEDSch Member=Component DS33 Y LED
+Added Member To Class: ClassName=IowaStateLEDSch Member=Component DS34 Y LED
+Added Member To Class: ClassName=IowaStateLEDSch Member=Component DS35 Y LED
+Added Member To Class: ClassName=IowaStateLEDSch Member=Component DS37 Y LED
+Added Room: Name=ConstantLED
+Added Room: Name=IowaStateLEDSch

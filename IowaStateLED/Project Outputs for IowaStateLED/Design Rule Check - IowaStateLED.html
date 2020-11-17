@@ -1,0 +1,582 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 8em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD20\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">11/17/2020</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">11:34:17 AM</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:02</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc" class="file"><acronym title="U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc">U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">82</td></tr>
+</table>
+</td>
+</table><a name="IDGW1BY3MNMM2CLOBEBGKPCBDIUHR11W5WTGS2M0G4ULCIAX5A4GOM"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID4ZHFQRA1U00XBX30ROJW05WXRDMJUFACESF5GVHDRVOYMQP5BE4H">Clearance Constraint (Gap=10mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDOVNFF5MUNBOLPHU5WBG41QNDZLRFINJKYQ4G3YKQDSFPEZRYM1UM">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID1OST50FGHU1GGYDMRKCX3L15TD2A51GS55ELENL2ST5CVQMHURKF">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDA2YYY5WIUDEVIDCZANSE00LL1XD0U3GK2X0MLZWW0L02ZRYHYO">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID5VTUCET4D022NHR4W4N13FEH2LQDYUKDMAV4GFO2TT403UUOSQC">Width Constraint (Min=10mil) (Max=15mil) (Preferred=15mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID0GN22CNZP3QPIJIJ1SLT4FMPXD1OUPHL2LZVG2FNPH0GNFQGCKBB">Power Plane Connect Rule(Relief Connect )(Expansion=20mil) (Conductor Width=10mil) (Air Gap=10mil) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDUYPKNEMNDHTOM2ESWJ5A4S0JRHF5JUHHIJN0LZKP0NLGK2TSKROJ">Hole Size Constraint (Min=1mil) (Max=100mil) (All)</a></td>
+<td class="column2">7</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID21A2BFCXWGMUFLMTOACJLD4MWDZYIRYDUBXAZZJRM4G2DRP52GQD">Hole To Hole Clearance (Gap=10mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDZFRSPRQVOIAPDDQBSOCW2AYC3H5O4W4Y3XPZWFPJNMQOWPKCYY4F">Minimum Solder Mask Sliver (Gap=10mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDRPO5XQKUJAVHJ0JO30J1E4LHCIVKUL4QDIKO1QGGZI5LY2ZHLJYG">Silk To Solder Mask (Clearance=10mil) (IsPad),(All)</a></td>
+<td class="column2">23</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDRACZS1JBPFUQKAWUXLQFAKKXOI0HRIB22UL3KLLNIEF2CKRSNIBF">Silk to Silk (Clearance=10mil) (All),(All)</a></td>
+<td class="column2">52</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDGBAWBZHUKZCBFMYCUVKKDXIJNNG04GRDY2GLKYLO1VZ3W2DNKERB">Net Antennae (Tolerance=0mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDUBI5L22UACVULMCSYUAY2VQCQDMVM5A34UYKURN0CE13URJHJ4KE">Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">82</td>
+</tr>
+</table><br><a name="IDUYPKNEMNDHTOM2ESWJ5A4S0JRHF5JUHHIJN0LZKP0NLGK2TSKROJ"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Hole Size Constraint (Min=1mil) (Max=100mil) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6376.383mil|Location2.X=6515.428mil|Location1.Y=4100.477mil|Location2.Y=4239.523mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6376.383mil|Location2.X=6515.428mil|Location1.Y=4100.477mil|Location2.Y=4239.523mil|Absolute=True">Hole Size Constraint: (137.795mil &gt; 100mil) Pad J1-1(6445.905mil,4170mil) on Multi-Layer Actual Slot Hole Width = 137.795mil</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6630.32mil|Location2.X=6749.68mil|Location1.Y=4110.32mil|Location2.Y=4229.68mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6630.32mil|Location2.X=6749.68mil|Location1.Y=4110.32mil|Location2.Y=4229.68mil|Absolute=True">Hole Size Constraint: (118.11mil &gt; 100mil) Pad J1-2(6690mil,4170mil) on Multi-Layer Actual Slot Hole Width = 118.11mil</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6512.21mil|Location2.X=6631.57mil|Location1.Y=4295.359mil|Location2.Y=4414.72mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6512.21mil|Location2.X=6631.57mil|Location1.Y=4295.359mil|Location2.Y=4414.72mil|Absolute=True">Hole Size Constraint: (118.11mil &gt; 100mil) Pad J1-3(6571.89mil,4355.039mil) on Multi-Layer Actual Slot Hole Width = 118.11mil</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2540.875mil|Location2.X=2699.125mil|Location1.Y=1855.875mil|Location2.Y=2014.125mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2540.875mil|Location2.X=2699.125mil|Location1.Y=1855.875mil|Location2.Y=2014.125mil|Absolute=True">Hole Size Constraint: (157mil &gt; 100mil) Via (2620mil,1935mil) from Top Layer to Bottom Layer Actual Hole Size = 157mil</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2540.875mil|Location2.X=2699.125mil|Location1.Y=4550.875mil|Location2.Y=4709.125mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2540.875mil|Location2.X=2699.125mil|Location1.Y=4550.875mil|Location2.Y=4709.125mil|Absolute=True">Hole Size Constraint: (157mil &gt; 100mil) Via (2620mil,4630mil) from Top Layer to Bottom Layer Actual Hole Size = 157mil</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6725.875mil|Location2.X=6884.125mil|Location1.Y=1845.875mil|Location2.Y=2004.125mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6725.875mil|Location2.X=6884.125mil|Location1.Y=1845.875mil|Location2.Y=2004.125mil|Absolute=True">Hole Size Constraint: (157mil &gt; 100mil) Via (6805mil,1925mil) from Top Layer to Bottom Layer Actual Hole Size = 157mil</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6725.875mil|Location2.X=6884.125mil|Location1.Y=4550.875mil|Location2.Y=4709.125mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6725.875mil|Location2.X=6884.125mil|Location1.Y=4550.875mil|Location2.Y=4709.125mil|Absolute=True">Hole Size Constraint: (157mil &gt; 100mil) Via (6805mil,4630mil) from Top Layer to Bottom Layer Actual Hole Size = 157mil</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDRPO5XQKUJAVHJ0JO30J1E4LHCIVKUL4QDIKO1QGGZI5LY2ZHLJYG"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=10mil) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5503.467mil|Location2.X=5514.717mil|Location1.Y=4330.064mil|Location2.Y=4341.314mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5503.467mil|Location2.X=5514.717mil|Location1.Y=4330.064mil|Location2.Y=4341.314mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.561mil &lt; 10mil) Between Pad DS42-1(5513.898mil,4369.997mil) on Top Layer And Text "R44" (5430.377mil,4296.47mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [9.561mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5487.949mil|Location2.X=5499.199mil|Location1.Y=4675.406mil|Location2.Y=4686.656mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5487.949mil|Location2.X=5499.199mil|Location1.Y=4675.406mil|Location2.Y=4686.656mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.877mil &lt; 10mil) Between Pad DS43-1(5513.898mil,4714.997mil) on Top Layer And Text "R45" (5430.602mil,4642.154mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.877mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5188.805mil|Location2.X=5200.055mil|Location1.Y=4675.44mil|Location2.Y=4686.69mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5188.805mil|Location2.X=5200.055mil|Location1.Y=4675.44mil|Location2.Y=4686.69mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.809mil &lt; 10mil) Between Pad DS44-1(5193.898mil,4714.997mil) on Top Layer And Text "R46" (5110.467mil,4642.221mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.809mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4854.811mil|Location2.X=4866.061mil|Location1.Y=4675.064mil|Location2.Y=4686.314mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4854.811mil|Location2.X=4866.061mil|Location1.Y=4675.064mil|Location2.Y=4686.314mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.561mil &lt; 10mil) Between Pad DS45-1(4880.894mil,4714.997mil) on Top Layer And Text "R47" (4797.464mil,4641.47mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [9.561mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3288.107mil|Location2.X=3299.357mil|Location1.Y=4330.44mil|Location2.Y=4341.69mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3288.107mil|Location2.X=3299.357mil|Location1.Y=4330.44mil|Location2.Y=4341.69mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.809mil &lt; 10mil) Between Pad DS51-1(3313.898mil,4369.997mil) on Top Layer And Text "R58" (3225.512mil,4297.221mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.809mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4466.049mil|Location2.X=4477.299mil|Location1.Y=3928.695mil|Location2.Y=3939.945mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4466.049mil|Location2.X=4477.299mil|Location1.Y=3928.695mil|Location2.Y=3939.945mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.283mil &lt; 10mil) Between Pad R10-1(4474.39mil,3899.166mil) on Top Layer And Text "R10" (4471.674mil,3941.914mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [9.283mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3525.94mil|Location2.X=3537.19mil|Location1.Y=4275.283mil|Location2.Y=4286.533mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3525.94mil|Location2.X=3537.19mil|Location1.Y=4275.283mil|Location2.Y=4286.533mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.793mil &lt; 10mil) Between Pad R1-1(3530.39mil,4250mil) on Top Layer And Text "R1" (3531.565mil,4284.257mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.793mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4774.3mil|Location2.X=4785.55mil|Location1.Y=3928.695mil|Location2.Y=3939.945mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4774.3mil|Location2.X=4785.55mil|Location1.Y=3928.695mil|Location2.Y=3939.945mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.283mil &lt; 10mil) Between Pad R11-1(4787.39mil,3899.166mil) on Top Layer And Text "R11" (4779.925mil,3941.914mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [9.283mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5092.052mil|Location2.X=5103.302mil|Location1.Y=3928.695mil|Location2.Y=3939.945mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5092.052mil|Location2.X=5103.302mil|Location1.Y=3928.695mil|Location2.Y=3939.945mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.283mil &lt; 10mil) Between Pad R12-1(5100.394mil,3899.166mil) on Top Layer And Text "R12" (5097.677mil,3941.914mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [9.283mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4153.049mil|Location2.X=4164.299mil|Location1.Y=3577.861mil|Location2.Y=3589.111mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4153.049mil|Location2.X=4164.299mil|Location1.Y=3577.861mil|Location2.Y=3589.111mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.283mil &lt; 10mil) Between Pad R13-1(4161.391mil,3548.333mil) on Top Layer And Text "R13" (4158.674mil,3591.081mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [9.283mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4466.049mil|Location2.X=4477.299mil|Location1.Y=3577.861mil|Location2.Y=3589.111mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4466.049mil|Location2.X=4477.299mil|Location1.Y=3577.861mil|Location2.Y=3589.111mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.283mil &lt; 10mil) Between Pad R14-1(4474.391mil,3548.333mil) on Top Layer And Text "R14" (4471.674mil,3591.081mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [9.283mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3828.693mil|Location2.X=3839.943mil|Location1.Y=4275.283mil|Location2.Y=4286.533mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3828.693mil|Location2.X=3839.943mil|Location1.Y=4275.283mil|Location2.Y=4286.533mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.793mil &lt; 10mil) Between Pad R2-1(3843.39mil,4250mil) on Top Layer And Text "R2" (3834.318mil,4284.257mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.793mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4146.693mil|Location2.X=4157.943mil|Location1.Y=4277.783mil|Location2.Y=4289.033mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4146.693mil|Location2.X=4157.943mil|Location1.Y=4277.783mil|Location2.Y=4289.033mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.793mil &lt; 10mil) Between Pad R3-1(4156.391mil,4250mil) on Top Layer And Text "R3" (4152.318mil,4289.257mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.793mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6613.903mil|Location2.X=6625.153mil|Location1.Y=2443.045mil|Location2.Y=2454.295mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6613.903mil|Location2.X=6625.153mil|Location1.Y=2443.045mil|Location2.Y=2454.295mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8mil &lt; 10mil) Between Pad R32-1(6598.677mil,2480mil) on Top Layer And Track (6627.381mil,2447.52mil)(6674.462mil,2447.52mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6613.903mil|Location2.X=6625.153mil|Location1.Y=2505.705mil|Location2.Y=2516.955mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6613.903mil|Location2.X=6625.153mil|Location1.Y=2505.705mil|Location2.Y=2516.955mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8mil &lt; 10mil) Between Pad R32-1(6598.677mil,2480mil) on Top Layer And Track (6627.381mil,2512.48mil)(6674.462mil,2512.48mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6676.69mil|Location2.X=6687.94mil|Location1.Y=2443.045mil|Location2.Y=2454.295mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6676.69mil|Location2.X=6687.94mil|Location1.Y=2443.045mil|Location2.Y=2454.295mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8mil &lt; 10mil) Between Pad R32-2(6703.165mil,2480mil) on Top Layer And Track (6627.381mil,2447.52mil)(6674.462mil,2447.52mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6676.69mil|Location2.X=6687.94mil|Location1.Y=2505.705mil|Location2.Y=2516.955mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6676.69mil|Location2.X=6687.94mil|Location1.Y=2505.705mil|Location2.Y=2516.955mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8mil &lt; 10mil) Between Pad R32-2(6703.165mil,2480mil) on Top Layer And Track (6627.381mil,2512.48mil)(6674.462mil,2512.48mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4449.176mil|Location2.X=4460.426mil|Location1.Y=4279.528mil|Location2.Y=4290.778mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4449.176mil|Location2.X=4460.426mil|Location1.Y=4279.528mil|Location2.Y=4290.778mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.283mil &lt; 10mil) Between Pad R4-1(4469.391mil,4250mil) on Top Layer And Text "R4" (4454.801mil,4292.747mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [9.283mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4762.176mil|Location2.X=4773.426mil|Location1.Y=4279.528mil|Location2.Y=4290.778mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4762.176mil|Location2.X=4773.426mil|Location1.Y=4279.528mil|Location2.Y=4290.778mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.283mil &lt; 10mil) Between Pad R5-1(4782.391mil,4250mil) on Top Layer And Text "R5" (4767.801mil,4292.747mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [9.283mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5075.176mil|Location2.X=5086.426mil|Location1.Y=4279.528mil|Location2.Y=4290.778mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5075.176mil|Location2.X=5086.426mil|Location1.Y=4279.528mil|Location2.Y=4290.778mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.283mil &lt; 10mil) Between Pad R6-1(5095.391mil,4250mil) on Top Layer And Text "R6" (5080.801mil,4292.747mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [9.283mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3515.177mil|Location2.X=3526.427mil|Location1.Y=3928.695mil|Location2.Y=3939.945mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3515.177mil|Location2.X=3526.427mil|Location1.Y=3928.695mil|Location2.Y=3939.945mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.283mil &lt; 10mil) Between Pad R7-1(3535.39mil,3899.166mil) on Top Layer And Text "R7" (3520.802mil,3941.914mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [9.283mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3828.176mil|Location2.X=3839.426mil|Location1.Y=3928.695mil|Location2.Y=3939.945mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3828.176mil|Location2.X=3839.426mil|Location1.Y=3928.695mil|Location2.Y=3939.945mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.283mil &lt; 10mil) Between Pad R8-1(3848.39mil,3899.166mil) on Top Layer And Text "R8" (3833.801mil,3941.914mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [9.283mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4141.176mil|Location2.X=4152.426mil|Location1.Y=3928.695mil|Location2.Y=3939.945mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4141.176mil|Location2.X=4152.426mil|Location1.Y=3928.695mil|Location2.Y=3939.945mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.283mil &lt; 10mil) Between Pad R9-1(4161.39mil,3899.166mil) on Top Layer And Text "R9" (4146.801mil,3941.914mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [9.283mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDRACZS1JBPFUQKAWUXLQFAKKXOI0HRIB22UL3KLLNIEF2CKRSNIBF"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk to Silk (Clearance=10mil) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3531.851mil|Location2.X=3543.101mil|Location1.Y=3009.025mil|Location2.Y=3020.275mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3531.851mil|Location2.X=3543.101mil|Location1.Y=3009.025mil|Location2.Y=3020.275mil|Absolute=True">Silk To Silk Clearance Constraint: (5.106mil &lt; 10mil) Between Text "DS55" (3490.247mil,3020.156mil) on Top Overlay And Track (3536.257mil,3008.16mil)(3583.737mil,3008.16mil) on Top Overlay Silk Text to Silk Clearance [5.106mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3216.719mil|Location2.X=3227.969mil|Location1.Y=3009.025mil|Location2.Y=3020.275mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3216.719mil|Location2.X=3227.969mil|Location1.Y=3009.025mil|Location2.Y=3020.275mil|Absolute=True">Silk To Silk Clearance Constraint: (5.106mil &lt; 10mil) Between Text "DS56" (3175.115mil,3020.156mil) on Top Overlay And Track (3221.26mil,3008.16mil)(3268.74mil,3008.16mil) on Top Overlay Silk Text to Silk Clearance [5.106mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3216.719mil|Location2.X=3227.969mil|Location1.Y=2660.691mil|Location2.Y=2671.941mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3216.719mil|Location2.X=3227.969mil|Location1.Y=2660.691mil|Location2.Y=2671.941mil|Absolute=True">Silk To Silk Clearance Constraint: (5.106mil &lt; 10mil) Between Text "DS57" (3175.115mil,2671.822mil) on Top Overlay And Track (3221.26mil,2659.826mil)(3268.74mil,2659.826mil) on Top Overlay Silk Text to Silk Clearance [5.106mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3216.764mil|Location2.X=3228.014mil|Location1.Y=2312.358mil|Location2.Y=2323.608mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3216.764mil|Location2.X=3228.014mil|Location1.Y=2312.358mil|Location2.Y=2323.608mil|Absolute=True">Silk To Silk Clearance Constraint: (5.106mil &lt; 10mil) Between Text "DS58" (3175.16mil,2323.489mil) on Top Overlay And Track (3221.26mil,2311.493mil)(3268.74mil,2311.493mil) on Top Overlay Silk Text to Silk Clearance [5.106mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3238.25mil|Location2.X=3249.5mil|Location1.Y=2007.361mil|Location2.Y=2018.611mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3238.25mil|Location2.X=3249.5mil|Location1.Y=2007.361mil|Location2.Y=2018.611mil|Absolute=True">Silk To Silk Clearance Constraint: (5.106mil &lt; 10mil) Between Text "DS59" (3165.16mil,2018.492mil) on Top Overlay And Track (3221.26mil,2006.496mil)(3268.74mil,2006.496mil) on Top Overlay Silk Text to Silk Clearance [5.106mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3542.639mil|Location2.X=3553.889mil|Location1.Y=2007.361mil|Location2.Y=2018.611mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3542.639mil|Location2.X=3553.889mil|Location1.Y=2007.361mil|Location2.Y=2018.611mil|Absolute=True">Silk To Silk Clearance Constraint: (5.106mil &lt; 10mil) Between Text "DS60" (3480.044mil,2018.492mil) on Top Overlay And Track (3536.257mil,2006.496mil)(3583.737mil,2006.496mil) on Top Overlay Silk Text to Silk Clearance [5.106mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3857.256mil|Location2.X=3868.506mil|Location1.Y=2007.361mil|Location2.Y=2018.611mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3857.256mil|Location2.X=3868.506mil|Location1.Y=2007.361mil|Location2.Y=2018.611mil|Absolute=True">Silk To Silk Clearance Constraint: (5.106mil &lt; 10mil) Between Text "DS61" (3794.661mil,2018.492mil) on Top Overlay And Track (3849.257mil,2006.496mil)(3896.737mil,2006.496mil) on Top Overlay Silk Text to Silk Clearance [5.106mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4168.503mil|Location2.X=4179.753mil|Location1.Y=2007.361mil|Location2.Y=2018.611mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4168.503mil|Location2.X=4179.753mil|Location1.Y=2007.361mil|Location2.Y=2018.611mil|Absolute=True">Silk To Silk Clearance Constraint: (5.106mil &lt; 10mil) Between Text "DS62" (4105.909mil,2018.492mil) on Top Overlay And Track (4162.257mil,2006.496mil)(4209.737mil,2006.496mil) on Top Overlay Silk Text to Silk Clearance [5.106mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3557.426mil|Location2.X=3568.676mil|Location1.Y=4275.283mil|Location2.Y=4286.533mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3557.426mil|Location2.X=3568.676mil|Location1.Y=4275.283mil|Location2.Y=4286.533mil|Absolute=True">Silk To Silk Clearance Constraint: (0.793mil &lt; 10mil) Between Text "R1" (3531.565mil,4284.257mil) on Top Overlay And Track (3562.871mil,4276.575mil)(3602.241mil,4276.575mil) on Top Overlay Silk Text to Silk Clearance [0.793mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4469.632mil|Location2.X=4480.882mil|Location1.Y=3975.666mil|Location2.Y=3986.916mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4469.632mil|Location2.X=4480.882mil|Location1.Y=3975.666mil|Location2.Y=3986.916mil|Absolute=True">Silk To Silk Clearance Constraint: (9.878mil &lt; 10mil) Between Text "R10" (4471.674mil,3941.914mil) on Top Overlay And Track (4475.257mil,3990.167mil)(4522.737mil,3990.167mil) on Top Overlay Silk Text to Silk Clearance [9.878mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4501.245mil|Location2.X=4512.495mil|Location1.Y=3928.695mil|Location2.Y=3939.945mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4501.245mil|Location2.X=4512.495mil|Location1.Y=3928.695mil|Location2.Y=3939.945mil|Absolute=True">Silk To Silk Clearance Constraint: (9.283mil &lt; 10mil) Between Text "R10" (4471.674mil,3941.914mil) on Top Overlay And Track (4506.87mil,3925.741mil)(4546.241mil,3925.741mil) on Top Overlay Silk Text to Silk Clearance [9.283mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4782.632mil|Location2.X=4793.882mil|Location1.Y=3975.666mil|Location2.Y=3986.916mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4782.632mil|Location2.X=4793.882mil|Location1.Y=3975.666mil|Location2.Y=3986.916mil|Absolute=True">Silk To Silk Clearance Constraint: (9.878mil &lt; 10mil) Between Text "R11" (4779.925mil,3941.914mil) on Top Overlay And Track (4788.257mil,3990.167mil)(4835.737mil,3990.167mil) on Top Overlay Silk Text to Silk Clearance [9.878mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4814.245mil|Location2.X=4825.495mil|Location1.Y=3928.695mil|Location2.Y=3939.945mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4814.245mil|Location2.X=4825.495mil|Location1.Y=3928.695mil|Location2.Y=3939.945mil|Absolute=True">Silk To Silk Clearance Constraint: (9.283mil &lt; 10mil) Between Text "R11" (4779.925mil,3941.914mil) on Top Overlay And Track (4819.87mil,3925.741mil)(4859.24mil,3925.741mil) on Top Overlay Silk Text to Silk Clearance [9.283mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5095.632mil|Location2.X=5106.882mil|Location1.Y=3975.666mil|Location2.Y=3986.916mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5095.632mil|Location2.X=5106.882mil|Location1.Y=3975.666mil|Location2.Y=3986.916mil|Absolute=True">Silk To Silk Clearance Constraint: (9.878mil &lt; 10mil) Between Text "R12" (5097.677mil,3941.914mil) on Top Overlay And Track (5101.257mil,3990.167mil)(5148.737mil,3990.167mil) on Top Overlay Silk Text to Silk Clearance [9.878mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5127.249mil|Location2.X=5138.499mil|Location1.Y=3928.695mil|Location2.Y=3939.945mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5127.249mil|Location2.X=5138.499mil|Location1.Y=3928.695mil|Location2.Y=3939.945mil|Absolute=True">Silk To Silk Clearance Constraint: (9.283mil &lt; 10mil) Between Text "R12" (5097.677mil,3941.914mil) on Top Overlay And Track (5132.874mil,3925.741mil)(5172.244mil,3925.741mil) on Top Overlay Silk Text to Silk Clearance [9.283mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4188.246mil|Location2.X=4199.496mil|Location1.Y=3577.861mil|Location2.Y=3589.111mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4188.246mil|Location2.X=4199.496mil|Location1.Y=3577.861mil|Location2.Y=3589.111mil|Absolute=True">Silk To Silk Clearance Constraint: (9.283mil &lt; 10mil) Between Text "R13" (4158.674mil,3591.081mil) on Top Overlay And Track (4193.871mil,3574.908mil)(4233.241mil,3574.908mil) on Top Overlay Silk Text to Silk Clearance [9.283mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4501.246mil|Location2.X=4512.496mil|Location1.Y=3577.861mil|Location2.Y=3589.111mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4501.246mil|Location2.X=4512.496mil|Location1.Y=3577.861mil|Location2.Y=3589.111mil|Absolute=True">Silk To Silk Clearance Constraint: (9.283mil &lt; 10mil) Between Text "R14" (4471.674mil,3591.081mil) on Top Overlay And Track (4506.871mil,3574.908mil)(4546.241mil,3574.908mil) on Top Overlay Silk Text to Silk Clearance [9.283mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4156.632mil|Location2.X=4167.882mil|Location1.Y=3279mil|Location2.Y=3290.25mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4156.632mil|Location2.X=4167.882mil|Location1.Y=3279mil|Location2.Y=3290.25mil|Absolute=True">Silk To Silk Clearance Constraint: (9.878mil &lt; 10mil) Between Text "R15" (4153.674mil,3245.247mil) on Top Overlay And Track (4162.257mil,3293.501mil)(4209.737mil,3293.501mil) on Top Overlay Silk Text to Silk Clearance [9.878mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4469.632mil|Location2.X=4480.882mil|Location1.Y=3279mil|Location2.Y=3290.25mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4469.632mil|Location2.X=4480.882mil|Location1.Y=3279mil|Location2.Y=3290.25mil|Absolute=True">Silk To Silk Clearance Constraint: (9.878mil &lt; 10mil) Between Text "R16" (4466.674mil,3245.247mil) on Top Overlay And Track (4475.257mil,3293.501mil)(4522.737mil,3293.501mil) on Top Overlay Silk Text to Silk Clearance [9.878mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3870.246mil|Location2.X=3881.496mil|Location1.Y=4275.283mil|Location2.Y=4286.533mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3870.246mil|Location2.X=3881.496mil|Location1.Y=4275.283mil|Location2.Y=4286.533mil|Absolute=True">Silk To Silk Clearance Constraint: (0.793mil &lt; 10mil) Between Text "R2" (3834.318mil,4284.257mil) on Top Overlay And Track (3875.871mil,4276.575mil)(3915.241mil,4276.575mil) on Top Overlay Silk Text to Silk Clearance [0.793mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4193.922mil|Location2.X=4205.172mil|Location1.Y=4277.783mil|Location2.Y=4289.033mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4193.922mil|Location2.X=4205.172mil|Location1.Y=4277.783mil|Location2.Y=4289.033mil|Absolute=True">Silk To Silk Clearance Constraint: (5.793mil &lt; 10mil) Between Text "R3" (4152.318mil,4289.257mil) on Top Overlay And Track (4188.871mil,4276.575mil)(4228.241mil,4276.575mil) on Top Overlay Silk Text to Silk Clearance [5.793mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5419.887mil|Location2.X=5431.137mil|Location1.Y=2931.653mil|Location2.Y=2942.903mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5419.887mil|Location2.X=5431.137mil|Location1.Y=2931.653mil|Location2.Y=2942.903mil|Absolute=True">Silk To Silk Clearance Constraint: (7.904mil &lt; 10mil) Between Text "R39" (5425.512mil,2898.888mil) on Top Overlay And Track (5421.26mil,2945.167mil)(5468.74mil,2945.167mil) on Top Overlay Silk Text to Silk Clearance [7.904mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4496.405mil|Location2.X=4507.655mil|Location1.Y=4325.25mil|Location2.Y=4336.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4496.405mil|Location2.X=4507.655mil|Location1.Y=4325.25mil|Location2.Y=4336.5mil|Absolute=True">Silk To Silk Clearance Constraint: (7.378mil &lt; 10mil) Between Text "R4" (4454.801mil,4292.747mil) on Top Overlay And Track (4475.257mil,4338.501mil)(4522.737mil,4338.501mil) on Top Overlay Silk Text to Silk Clearance [7.378mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4496.405mil|Location2.X=4507.655mil|Location1.Y=4279.528mil|Location2.Y=4290.778mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4496.405mil|Location2.X=4507.655mil|Location1.Y=4279.528mil|Location2.Y=4290.778mil|Absolute=True">Silk To Silk Clearance Constraint: (9.283mil &lt; 10mil) Between Text "R4" (4454.801mil,4292.747mil) on Top Overlay And Track (4501.871mil,4276.575mil)(4541.241mil,4276.575mil) on Top Overlay Silk Text to Silk Clearance [9.283mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5099.771mil|Location2.X=5111.021mil|Location1.Y=2931.653mil|Location2.Y=2942.903mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5099.771mil|Location2.X=5111.021mil|Location1.Y=2931.653mil|Location2.Y=2942.903mil|Absolute=True">Silk To Silk Clearance Constraint: (7.904mil &lt; 10mil) Between Text "R40" (5105.396mil,2898.888mil) on Top Overlay And Track (5101.257mil,2945.167mil)(5148.737mil,2945.167mil) on Top Overlay Silk Text to Silk Clearance [7.904mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5106.392mil|Location2.X=5117.642mil|Location1.Y=3627.978mil|Location2.Y=3639.228mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5106.392mil|Location2.X=5117.642mil|Location1.Y=3627.978mil|Location2.Y=3639.228mil|Absolute=True">Silk To Silk Clearance Constraint: (8.588mil &lt; 10mil) Between Text "R41" (5112.017mil,3594.87mil) on Top Overlay And Track (5101.26mil,3641.834mil)(5148.74mil,3641.834mil) on Top Overlay Silk Text to Silk Clearance [8.588mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5424.639mil|Location2.X=5435.889mil|Location1.Y=3627.978mil|Location2.Y=3639.228mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5424.639mil|Location2.X=5435.889mil|Location1.Y=3627.978mil|Location2.Y=3639.228mil|Absolute=True">Silk To Silk Clearance Constraint: (8.588mil &lt; 10mil) Between Text "R42" (5430.264mil,3594.87mil) on Top Overlay And Track (5421.26mil,3641.834mil)(5468.74mil,3641.834mil) on Top Overlay Silk Text to Silk Clearance [8.588mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5424.842mil|Location2.X=5436.092mil|Location1.Y=3977.903mil|Location2.Y=3989.153mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5424.842mil|Location2.X=5436.092mil|Location1.Y=3977.903mil|Location2.Y=3989.153mil|Absolute=True">Silk To Silk Clearance Constraint: (5.404mil &lt; 10mil) Between Text "R43" (5430.467mil,3946.388mil) on Top Overlay And Track (5421.26mil,3990.167mil)(5468.74mil,3990.167mil) on Top Overlay Silk Text to Silk Clearance [5.404mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5424.752mil|Location2.X=5436.002mil|Location1.Y=4327.111mil|Location2.Y=4338.361mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5424.752mil|Location2.X=5436.002mil|Location1.Y=4327.111mil|Location2.Y=4338.361mil|Absolute=True">Silk To Silk Clearance Constraint: (3.656mil &lt; 10mil) Between Text "R44" (5430.377mil,4296.47mil) on Top Overlay And Track (5421.26mil,4338.501mil)(5468.74mil,4338.501mil) on Top Overlay Silk Text to Silk Clearance [3.656mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5424.977mil|Location2.X=5436.227mil|Location1.Y=4672.453mil|Location2.Y=4683.703mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5424.977mil|Location2.X=5436.227mil|Location1.Y=4672.453mil|Location2.Y=4683.703mil|Absolute=True">Silk To Silk Clearance Constraint: (2.971mil &lt; 10mil) Between Text "R45" (5430.602mil,4642.154mil) on Top Overlay And Track (5421.26mil,4683.501mil)(5468.74mil,4683.501mil) on Top Overlay Silk Text to Silk Clearance [2.971mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5104.842mil|Location2.X=5116.092mil|Location1.Y=4672.487mil|Location2.Y=4683.737mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5104.842mil|Location2.X=5116.092mil|Location1.Y=4672.487mil|Location2.Y=4683.737mil|Absolute=True">Silk To Silk Clearance Constraint: (2.904mil &lt; 10mil) Between Text "R46" (5110.467mil,4642.221mil) on Top Overlay And Track (5101.26mil,4683.501mil)(5148.74mil,4683.501mil) on Top Overlay Silk Text to Silk Clearance [2.904mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4791.839mil|Location2.X=4803.089mil|Location1.Y=4672.111mil|Location2.Y=4683.361mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4791.839mil|Location2.X=4803.089mil|Location1.Y=4672.111mil|Location2.Y=4683.361mil|Absolute=True">Silk To Silk Clearance Constraint: (3.656mil &lt; 10mil) Between Text "R47" (4797.464mil,4641.47mil) on Top Overlay And Track (4788.257mil,4683.501mil)(4835.737mil,4683.501mil) on Top Overlay Silk Text to Silk Clearance [3.656mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4478.95mil|Location2.X=4490.2mil|Location1.Y=4671.005mil|Location2.Y=4682.255mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4478.95mil|Location2.X=4490.2mil|Location1.Y=4671.005mil|Location2.Y=4682.255mil|Absolute=True">Silk To Silk Clearance Constraint: (5.868mil &lt; 10mil) Between Text "R48" (4484.575mil,4639.257mil) on Top Overlay And Track (4475.257mil,4683.501mil)(4522.737mil,4683.501mil) on Top Overlay Silk Text to Silk Clearance [5.868mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4157.394mil|Location2.X=4168.644mil|Location1.Y=4671.005mil|Location2.Y=4682.255mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4157.394mil|Location2.X=4168.644mil|Location1.Y=4671.005mil|Location2.Y=4682.255mil|Absolute=True">Silk To Silk Clearance Constraint: (5.868mil &lt; 10mil) Between Text "R49" (4163.019mil,4639.257mil) on Top Overlay And Track (4162.257mil,4683.501mil)(4209.737mil,4683.501mil) on Top Overlay Silk Text to Silk Clearance [5.868mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4793.662mil|Location2.X=4804.912mil|Location1.Y=4325.25mil|Location2.Y=4336.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4793.662mil|Location2.X=4804.912mil|Location1.Y=4325.25mil|Location2.Y=4336.5mil|Absolute=True">Silk To Silk Clearance Constraint: (7.378mil &lt; 10mil) Between Text "R5" (4767.801mil,4292.747mil) on Top Overlay And Track (4788.257mil,4338.501mil)(4835.737mil,4338.501mil) on Top Overlay Silk Text to Silk Clearance [7.378mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4809.405mil|Location2.X=4820.655mil|Location1.Y=4279.528mil|Location2.Y=4290.778mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4809.405mil|Location2.X=4820.655mil|Location1.Y=4279.528mil|Location2.Y=4290.778mil|Absolute=True">Silk To Silk Clearance Constraint: (9.283mil &lt; 10mil) Between Text "R5" (4767.801mil,4292.747mil) on Top Overlay And Track (4814.871mil,4276.575mil)(4854.241mil,4276.575mil) on Top Overlay Silk Text to Silk Clearance [9.283mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3847.394mil|Location2.X=3858.644mil|Location1.Y=4671.005mil|Location2.Y=4682.255mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3847.394mil|Location2.X=3858.644mil|Location1.Y=4671.005mil|Location2.Y=4682.255mil|Absolute=True">Silk To Silk Clearance Constraint: (5.868mil &lt; 10mil) Between Text "R50" (3853.019mil,4639.257mil) on Top Overlay And Track (3849.257mil,4683.501mil)(3896.737mil,4683.501mil) on Top Overlay Silk Text to Silk Clearance [5.868mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3542.642mil|Location2.X=3553.892mil|Location1.Y=4671.005mil|Location2.Y=4682.255mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3542.642mil|Location2.X=3553.892mil|Location1.Y=4671.005mil|Location2.Y=4682.255mil|Absolute=True">Silk To Silk Clearance Constraint: (5.868mil &lt; 10mil) Between Text "R51" (3548.267mil,4639.257mil) on Top Overlay And Track (3536.257mil,4683.501mil)(3583.737mil,4683.501mil) on Top Overlay Silk Text to Silk Clearance [5.868mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3217.394mil|Location2.X=3228.644mil|Location1.Y=4671.005mil|Location2.Y=4682.255mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3217.394mil|Location2.X=3228.644mil|Location1.Y=4671.005mil|Location2.Y=4682.255mil|Absolute=True">Silk To Silk Clearance Constraint: (5.868mil &lt; 10mil) Between Text "R52" (3223.019mil,4639.257mil) on Top Overlay And Track (3221.26mil,4683.501mil)(3268.74mil,4683.501mil) on Top Overlay Silk Text to Silk Clearance [5.868mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3219.887mil|Location2.X=3231.137mil|Location1.Y=4327.487mil|Location2.Y=4338.737mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3219.887mil|Location2.X=3231.137mil|Location1.Y=4327.487mil|Location2.Y=4338.737mil|Absolute=True">Silk To Silk Clearance Constraint: (2.904mil &lt; 10mil) Between Text "R58" (3225.512mil,4297.221mil) on Top Overlay And Track (3221.26mil,4338.501mil)(3268.74mil,4338.501mil) on Top Overlay Silk Text to Silk Clearance [2.904mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3220.052mil|Location2.X=3231.302mil|Location1.Y=3977.903mil|Location2.Y=3989.153mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3220.052mil|Location2.X=3231.302mil|Location1.Y=3977.903mil|Location2.Y=3989.153mil|Absolute=True">Silk To Silk Clearance Constraint: (5.404mil &lt; 10mil) Between Text "R59" (3225.677mil,3946.388mil) on Top Overlay And Track (3221.26mil,3990.167mil)(3268.74mil,3990.167mil) on Top Overlay Silk Text to Silk Clearance [5.404mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5127.653mil|Location2.X=5138.903mil|Location1.Y=4325.25mil|Location2.Y=4336.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5127.653mil|Location2.X=5138.903mil|Location1.Y=4325.25mil|Location2.Y=4336.5mil|Absolute=True">Silk To Silk Clearance Constraint: (7.378mil &lt; 10mil) Between Text "R6" (5080.801mil,4292.747mil) on Top Overlay And Track (5101.26mil,4338.501mil)(5148.74mil,4338.501mil) on Top Overlay Silk Text to Silk Clearance [7.378mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5122.246mil|Location2.X=5133.496mil|Location1.Y=4279.528mil|Location2.Y=4290.778mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5122.246mil|Location2.X=5133.496mil|Location1.Y=4279.528mil|Location2.Y=4290.778mil|Absolute=True">Silk To Silk Clearance Constraint: (9.283mil &lt; 10mil) Between Text "R6" (5080.801mil,4292.747mil) on Top Overlay And Track (5127.871mil,4276.575mil)(5167.241mil,4276.575mil) on Top Overlay Silk Text to Silk Clearance [9.283mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3219.609mil|Location2.X=3230.859mil|Location1.Y=3628.32mil|Location2.Y=3639.57mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3219.609mil|Location2.X=3230.859mil|Location1.Y=3628.32mil|Location2.Y=3639.57mil|Absolute=True">Silk To Silk Clearance Constraint: (7.904mil &lt; 10mil) Between Text "R60" (3225.234mil,3595.555mil) on Top Overlay And Track (3221.26mil,3641.834mil)(3268.74mil,3641.834mil) on Top Overlay Silk Text to Silk Clearance [7.904mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3536.388mil|Location2.X=3547.638mil|Location1.Y=3628.32mil|Location2.Y=3639.57mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3536.388mil|Location2.X=3547.638mil|Location1.Y=3628.32mil|Location2.Y=3639.57mil|Absolute=True">Silk To Silk Clearance Constraint: (7.904mil &lt; 10mil) Between Text "R61" (3542.013mil,3595.555mil) on Top Overlay And Track (3536.257mil,3641.834mil)(3583.737mil,3641.834mil) on Top Overlay Silk Text to Silk Clearance [7.904mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3530.632mil|Location2.X=3541.882mil|Location1.Y=3975.666mil|Location2.Y=3986.916mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3530.632mil|Location2.X=3541.882mil|Location1.Y=3975.666mil|Location2.Y=3986.916mil|Absolute=True">Silk To Silk Clearance Constraint: (9.878mil &lt; 10mil) Between Text "R7" (3520.802mil,3941.914mil) on Top Overlay And Track (3536.257mil,3990.167mil)(3583.737mil,3990.167mil) on Top Overlay Silk Text to Silk Clearance [9.878mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3843.632mil|Location2.X=3854.882mil|Location1.Y=3628.32mil|Location2.Y=3639.57mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3843.632mil|Location2.X=3854.882mil|Location1.Y=3628.32mil|Location2.Y=3639.57mil|Absolute=True">Silk To Silk Clearance Constraint: (7.904mil &lt; 10mil) Between Text "R70" (3843.562mil,3595.555mil) on Top Overlay And Track (3849.257mil,3641.834mil)(3896.737mil,3641.834mil) on Top Overlay Silk Text to Silk Clearance [7.904mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4791.839mil|Location2.X=4803.089mil|Location1.Y=3628.32mil|Location2.Y=3639.57mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4791.839mil|Location2.X=4803.089mil|Location1.Y=3628.32mil|Location2.Y=3639.57mil|Absolute=True">Silk To Silk Clearance Constraint: (7.904mil &lt; 10mil) Between Text "R76" (4797.464mil,3595.555mil) on Top Overlay And Track (4788.257mil,3641.834mil)(4835.737mil,3641.834mil) on Top Overlay Silk Text to Silk Clearance [7.904mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3843.632mil|Location2.X=3854.882mil|Location1.Y=3975.666mil|Location2.Y=3986.916mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3843.632mil|Location2.X=3854.882mil|Location1.Y=3975.666mil|Location2.Y=3986.916mil|Absolute=True">Silk To Silk Clearance Constraint: (9.878mil &lt; 10mil) Between Text "R8" (3833.801mil,3941.914mil) on Top Overlay And Track (3849.257mil,3990.167mil)(3896.737mil,3990.167mil) on Top Overlay Silk Text to Silk Clearance [9.878mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3875.405mil|Location2.X=3886.655mil|Location1.Y=3928.695mil|Location2.Y=3939.945mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3875.405mil|Location2.X=3886.655mil|Location1.Y=3928.695mil|Location2.Y=3939.945mil|Absolute=True">Silk To Silk Clearance Constraint: (9.283mil &lt; 10mil) Between Text "R8" (3833.801mil,3941.914mil) on Top Overlay And Track (3880.871mil,3925.741mil)(3920.241mil,3925.741mil) on Top Overlay Silk Text to Silk Clearance [9.283mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4156.632mil|Location2.X=4167.882mil|Location1.Y=3975.666mil|Location2.Y=3986.916mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4156.632mil|Location2.X=4167.882mil|Location1.Y=3975.666mil|Location2.Y=3986.916mil|Absolute=True">Silk To Silk Clearance Constraint: (9.878mil &lt; 10mil) Between Text "R9" (4146.801mil,3941.914mil) on Top Overlay And Track (4162.257mil,3990.167mil)(4209.737mil,3990.167mil) on Top Overlay Silk Text to Silk Clearance [9.878mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4188.246mil|Location2.X=4199.496mil|Location1.Y=3928.695mil|Location2.Y=3939.945mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=U:\Documents\Personal Projects\LED_PCB_Boards\IowaStateLED\IowaStateLED.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4188.246mil|Location2.X=4199.496mil|Location1.Y=3928.695mil|Location2.Y=3939.945mil|Absolute=True">Silk To Silk Clearance Constraint: (9.283mil &lt; 10mil) Between Text "R9" (4146.801mil,3941.914mil) on Top Overlay And Track (4193.871mil,3925.741mil)(4233.241mil,3925.741mil) on Top Overlay Silk Text to Silk Clearance [9.283mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>

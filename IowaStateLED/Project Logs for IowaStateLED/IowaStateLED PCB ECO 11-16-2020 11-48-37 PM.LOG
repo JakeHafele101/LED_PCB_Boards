@@ -1,0 +1,45 @@
+Removed Pin From Net: NetName=C1 Pin=C1-1
+Removed Pin From Net: NetName=C2 Pin=C2-1
+Added Component: Designator=5v(EPAD)
+Added Component: Designator=C0(EPAD)
+Added Component: Designator=C1(EPAD)
+Added Component: Designator=C2(EPAD)
+Added Component: Designator=C3(EPAD)
+Added Component: Designator=C4(EPAD)
+Added Component: Designator=C5(EPAD)
+Added Component: Designator=C6(EPAD)
+Added Component: Designator=C7(EPAD)
+Added Component: Designator=C8(EPAD)
+Added Component: Designator=C9(EPAD)
+Added Component: Designator=Clk(EPAD)
+Added Component: Designator=GND(EPAD)
+Added Pin To Net: NetName=+5 Pin=5v-1
+Added Pin To Net: NetName=C0 Pin=C0-1
+Added Pin To Net: NetName=C1 Pin=C1-1
+Added Pin To Net: NetName=NetC1_1 Pin=C1-1
+Added Pin To Net: NetName=C2 Pin=C2-1
+Added Pin To Net: NetName=NetC2_1 Pin=C2-1
+Added Pin To Net: NetName=C3 Pin=C3-1
+Added Pin To Net: NetName=C4 Pin=C4-1
+Added Pin To Net: NetName=C5 Pin=C5-1
+Added Pin To Net: NetName=C6 Pin=C6-1
+Added Pin To Net: NetName=C7 Pin=C7-1
+Added Pin To Net: NetName=C8 Pin=C8-1
+Added Pin To Net: NetName=C9 Pin=C9-1
+Added Pin To Net: NetName=Clk Pin=Clk-1
+Added Pin To Net: NetName=GND Pin=GND-1
+Added Member To Class: ClassName=IowaStateLEDSch Member=Component 5v EPAD
+Added Member To Class: ClassName=IowaStateLEDSch Member=Component C0 EPAD
+Added Member To Class: ClassName=IowaStateLEDSch Member=Component C1 0.01 uf
+Added Member To Class: ClassName=IowaStateLEDSch Member=Component C2 10 uf
+Added Member To Class: ClassName=IowaStateLEDSch Member=Component C3 EPAD
+Added Member To Class: ClassName=IowaStateLEDSch Member=Component C4 EPAD
+Added Member To Class: ClassName=IowaStateLEDSch Member=Component C5 EPAD
+Added Member To Class: ClassName=IowaStateLEDSch Member=Component C6 EPAD
+Added Member To Class: ClassName=IowaStateLEDSch Member=Component C7 EPAD
+Added Member To Class: ClassName=IowaStateLEDSch Member=Component C8 EPAD
+Added Member To Class: ClassName=IowaStateLEDSch Member=Component C9 EPAD
+Added Member To Class: ClassName=IowaStateLEDSch Member=Component Clk EPAD
+Added Member To Class: ClassName=IowaStateLEDSch Member=Component GND EPAD
+Added Room: Name=ConstantLED
+Added Room: Name=IowaStateLEDSch

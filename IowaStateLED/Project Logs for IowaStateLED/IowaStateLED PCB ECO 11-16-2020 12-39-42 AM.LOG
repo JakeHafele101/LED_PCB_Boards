@@ -1,0 +1,10 @@
+Removed Pin From Net: NetName=NetDS63_2 Pin=DS66-2
+Removed Pin From Net: NetName=NetDS67_2 Pin=DS70-2
+Removed Pin From Net: NetName=+5 Pin=R73-1
+Removed Pin From Net: NetName=+5 Pin=R77-1
+Removed Member From Class: ClassName=IowaStateLEDSch Member=DS66
+Removed Member From Class: ClassName=IowaStateLEDSch Member=DS70
+Removed Member From Class: ClassName=IowaStateLEDSch Member=R73
+Removed Member From Class: ClassName=IowaStateLEDSch Member=R77
+Added Room: Name=ConstantLED
+Added Room: Name=IowaStateLEDSch
